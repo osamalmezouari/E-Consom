@@ -1,0 +1,27 @@
+.sidebar::-webkit-scrollbar {
+    width: 10px; /* Adjust the width as needed */
+    display: none;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Track color */
+    display: none;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #5BBCE3; /* Thumb color */
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #0e1726; /* Hover state */
+}
+
+.sidebar {
+    max-height: calc(100vh - 112px) !important;
+    overflow-y: scroll;
+}
+
+.sidebar {
+    background-color: #0e1726;
+}
+
