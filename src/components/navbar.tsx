@@ -3,7 +3,7 @@ import {NavLink, useNavigate} from "react-router-dom";
 import {MdLogout} from "react-icons/md";
 import {createContext, useEffect, useState} from "react";
 import {FaChartBar, FaTable} from "react-icons/fa";
-import Supportalert from "./alerts/supportalert.tsx";
+import Supportalert from "./alerts/help.tsx";
 import {ImNewTab} from "react-icons/im";
 
 interface PropsType {
