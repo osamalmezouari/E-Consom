@@ -114,7 +114,7 @@ const ConsomationTable = () => {
 
     return (
         <>
-            <div className="relative overflow-x-auto max-w-6xl m-auto">
+            <div className="relative overflow-x-auto max- w-full auto">
                 <form onSubmit={handleFilterSubmit}>
                     <div className="py-10 flex gap-5 items-center">
                         <div className="row-start-2 col-start-2 col-span-2">
@@ -180,10 +180,10 @@ const ConsomationTable = () => {
                 </form>
 
                 {isLoading ? (
-                    <p className="text-center text-gray-600 dark:text-white">Loading...</p>
+                    <p className="text-center text-white">Loading...</p>
                 ) : (
                     <table
-                        className="table rounded-2xl w-full mb-20 text-white text-left bg-blackwhite">
+                        className="table w-full mb-20 text-white text-left bg-blackwhite">
                         <thead className="text-white uppercase bg-bluewhite">
                         <tr>
                             <th scope="col" className="px-6 py-3">
@@ -220,7 +220,7 @@ const ConsomationTable = () => {
                                     <td className="px-6 font-medium text-gray-900 whitespace-nowrap">
                                         {item.Mois}
                                     </td>
-                                    <td className="px-6 py-1 text-center">{item.MNT_CONS}</td>
+                                    <td className="px-6 py-1">{item.MNT_CONS}</td>
                                     <td className="px-6 py-1">{item.ANNEE}</td>
                                     <td className="px-6 py-1">{item.Produit}</td>
                                     <td className="py-1">{item.Region}</td>

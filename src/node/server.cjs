@@ -453,17 +453,12 @@ app.get('/DonneConsomData', async (req, res) => {
 app.get('/getUserInfo/:userID', async (req, res) => {
     const userID = req.params.userID;
     try {
-        const userInfoQuery = `
-            SELECT users.*, departement.DEPARTEMENT, region.REGION
+        const userInfoQuery =` SELECT users.*, departement.DEPARTEMENT, region.REGION
             FROM users
             LEFT JOIN departement ON users.ID_D = departement.ID_D
             LEFT JOIN region ON departement.ID_R = region.ID_R
-            WHERE users.user_id = ${userID}
-        `;
-
-
+            WHERE users.user_id = ${userID}`;
         const [userInfo] = await db.promise().query(userInfoQuery);
-
         if (userInfo.length === 0) {
             res.status(404).json({error: 'User not found'});
         } else {
@@ -634,7 +629,6 @@ app.post('/users', (req, res) => {
 });
 
 app.get('/users', (req, res) => {
-    // Retrieve all users from the 'users' table
     db.query('SELECT * FROM users', (err, results) => {
         if (err) {
             console.error('Error retrieving data from MySQL:', err);
@@ -739,7 +733,7 @@ app.get('/getAllConsommationData', async (req, res) => {
 });
 app.put('/users/:userId', async (req, res) => {
     const userId = req.params.userId;
-    const updatedUserData = req.body; // Assuming the updated user data is sent in the request body
+    const updatedUserData = req.body;
 
     try {
         const updateQuery = 'UPDATE users SET email = ?, password = ?, delegate_par = ?, nom_prenom = ?, isAdmin = ?, active_statue = ?, tele = ?, ID_D = ? WHERE user_id = ?';
@@ -771,10 +765,8 @@ app.delete('/users/:userId', async (req, res) => {
     const userId = req.params.userId;
 
     try {
-        // Delete consommation records associated with the user
         await db.promise().query('DELETE FROM consommation WHERE user_id = ?', [userId]);
 
-        // Delete the user from the 'users' table
         const userDeletionResult = await db.promise().query('DELETE FROM users WHERE user_id = ?', [userId]);
 
         if (userDeletionResult.affectedRows === 0) {

@@ -95,6 +95,243 @@ const UserCrud = () => {
                 onClick={() => settoogle(!toogle)}
             > Ajouter un utilisateur
             </button>
+        {toogleupdate && (
+            <form onSubmit={(e) => e.preventDefault()}
+                className={' mt-5 w-6/12 w-60vw m-auto bg-secend px-4 py-2 rounded-xl hover:shadow transition-all duration-300'}>
+                <p className={'mb-2 font-bold tracking-widest '} style={{fontSize: '13px'}}>
+                    Modifier l'utilisateur
+                </p>
+                <div className={'mt-4 grid grid-cols-3 gap-3'}>
+
+                    <label className={'col-start-2'}>
+                        Email :
+                        <input
+                            type="text"
+                            value={editingUser.email}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setEditingUser({
+                                ...editingUser,
+                                email: e.target.value
+                            })}
+                            className={'w-full h-10 rounded mt-2 outline-0 pl-3 caret-primary border border-transparent hover:border-primary transition-all duration-500'}
+                        />
+                    </label>
+                    <label className={'col-start-3 row-start-1'}>
+                        Mot de passe :
+                        <input
+                            type="text"
+                            value={editingUser.password}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setEditingUser({
+                                ...editingUser,
+                                password: e.target.value
+                            })}
+                            className={'w-full h-10 rounded mt-2 outline-0 pl-3 caret-primary border border-transparent hover:border-primary transition-all duration-500'}
+                        />
+                    </label>
+                    <label>
+                        Délégué par :
+                        <input
+                            type="text"
+                            value={editingUser.delegate_par}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setEditingUser({
+                                ...editingUser,
+                                delegate_par: e.target.value
+                            })}
+                            className={'w-full h-10 rounded mt-2 outline-0 pl-3 caret-primary border border-transparent hover:border-primary transition-all duration-500'}
+                        />
+                    </label>
+                    <label className={'col-start-1 row-start-1'}>
+                        Nom et Prénom :
+                        <input
+                            type="text"
+                            value={editingUser.nom_prenom}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setEditingUser({
+                                ...editingUser,
+                                nom_prenom: e.target.value
+                            })}
+                            className={'w-full h-10 rounded mt-2 outline-0 pl-3 caret-primary border border-transparent hover:border-primary transition-all duration-500'}
+                        />
+                    </label>
+                    <label className={'flex items-center gap-3'}>
+                        Admin
+                        <input
+                            type="checkbox"
+                            checked={editingUser.isAdmin}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setEditingUser({
+                                ...editingUser,
+                                isAdmin: e.target.checked
+                            })}
+                            className={' outline-0 caret-primary hover:border-primary transition-all duration-500'}
+                        />
+                    </label>
+                    <label className={'flex items-center gap-3'}>
+                        User
+                        <input
+                            type="checkbox"
+                            checked={editingUser.active_statue}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setEditingUser({
+                                ...editingUser,
+                                active_statue: e.target.checked
+                            })}
+                            className={' outline-0 caret-primary hover:border-primary transition-all duration-500'}
+                        />
+                    </label>
+                    <label className={'row-start-2 col-start-1'}>
+                        Téléphone :
+                        <input
+                            type="text"
+                            value={editingUser.tele}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setEditingUser({
+                                ...editingUser,
+                                tele: e.target.value
+                            })}
+                            className={' w-full h-10 rounded mt-2 outline-0 pl-3 caret-primary border border-transparent hover:border-primary transition-all duration-500'}
+                        />
+                    </label>
+                    <label className={'row-start-2 col-start-2'}>
+                        ID_D :
+                        <select
+                            value={editingUser.ID_D}
+                            onChange={(e: ChangeEvent<HTMLSelectElement>) => setEditingUser({
+                                ...editingUser,
+                                ID_D: e.target.value
+                            })}
+                            className={'w-full h-10 rounded mt-2 outline-0 pl-3 caret-primary border border-transparent hover:border-primary transition-all duration-500'}
+                            >
+                            <option value="" disabled>Select a department</option>
+                            {departments.map(department => (
+                                <option key={department.ID_D} value={department.ID_D}>
+                                    {department.DEPARTEMENT}
+                                </option>
+                                ))}
+                        </select>
+                    </label>
+                    <button
+                        type="submit"
+                        onClick={handleUpdateUser}
+                        className={'row-start-4 col-span-3 mt-2 mb-2 text-center w-full py-1 text-primary border-primary border-2 rounded capitalize hover:text-white hover:bg-primary transition-all duration-500 font-medium tracking-wide'}
+                        >
+                        Mettre à jour l'utilisateur
+                    </button>
+                </div>
+            </form>
+            )}
+        {toogle && <form onSubmit={(e) => e.preventDefault()}
+            className={'mt-5 w-6/12 w-60vw m-auto bg-secend px-4 py-2 rounded-xl hover:shadow transition-all duration-300'}>
+            <p className={'mb-2 font-bold tracking-widest '} style={{fontSize: '13px'}}>
+                Ajouter un utilisateur
+            </p>
+            <div className={'mt-4 grid grid-cols-3 gap-3'}>
+                <label className={'col-start-2'}>
+                    Email :
+                    <input
+                        type="text"
+                        value={newUser.email}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => setNewUser({
+                            ...newUser,
+                            email: e.target.value
+                        })}
+                        className={'w-full h-10 rounded mt-2 outline-0 pl-3 caret-primary border border-transparent hover:border-primary transition-all duration-500'}
+                    />
+                </label>
+                <label className={'col-start-3 row-start-1'}>
+                    Mot de passe :
+                    <input
+                        type="text"
+                        value={newUser.password}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => setNewUser({
+                            ...newUser,
+                            password: e.target.value
+                        })}
+                        className={'w-full h-10 rounded mt-2 outline-0 pl-3 caret-primary border border-transparent hover:border-primary transition-all duration-500'}
+                    />
+                </label>
+                <label>
+                    Délégué par :
+                    <input
+                        type="text"
+                        value={newUser.delegate_par}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => setNewUser({
+                            ...newUser,
+                            delegate_par: e.target.value
+                        })}
+                        className={'w-full h-10 rounded mt-2 outline-0 pl-3 caret-primary border border-transparent hover:border-primary transition-all duration-500'}
+                    />
+                </label>
+                <label className={'col-start-1 row-start-1'}>
+                    Nom et Prénom :
+                    <input
+                        type="text"
+                        value={newUser.nom_prenom}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => setNewUser({
+                            ...newUser,
+                            nom_prenom: e.target.value
+                        })}
+                        className={'w-full h-10 rounded mt-2 outline-0 pl-3 caret-primary border border-transparent hover:border-primary transition-all duration-500'}
+                    />
+                </label>
+                <label className={'flex items-center gap-3'}>
+                    Admin
+                    <input
+                        type="checkbox"
+                        checked={newUser.isAdmin}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => setNewUser({
+                            ...newUser,
+                            isAdmin: e.target.checked
+                        })}
+                        className={' outline-0 caret-primary hover:border-primary transition-all duration-500'}
+                    />
+                </label>
+                <label className={'flex items-center gap-3'}>
+                    User
+                    <input
+                        type="checkbox"
+                        checked={newUser.active_statue}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => setNewUser({
+                            ...newUser,
+                            active_statue: e.target.checked
+                        })}
+                        className={' outline-0 caret-primary hover:border-primary transition-all duration-500'}
+                    />
+                </label>
+                <label className={'row-start-2 col-start-1'}>
+                    Téléphone :
+                    <input
+                        type="text"
+                        value={newUser.tele}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => setNewUser({
+                            ...newUser,
+                            tele: e.target.value
+                        })}
+                        className={' w-full h-10 rounded mt-2 outline-0 pl-3 caret-primary border border-transparent hover:border-primary transition-all duration-500'}
+                    />
+                </label>
+                < label className={'row-start-2 col-start-2'}>
+                    ID_D :
+                    <select
+                        value={newUser.ID_D}
+                        onChange={(e: ChangeEvent<HTMLSelectElement>) => setNewUser({
+                            ...newUser,
+                            ID_D: e.target.value
+                        })}
+                        className={'w-full h-10 rounded mt-2 outline-0 pl-3 caret-primary border border-transparent hover:border-primary transition-all duration-500'}
+                        >
+                        <option value="" hidden>Select a department</option>
+                        {departments.map(department => (
+                            <option key={department.ID_D} value={department.ID_D}>
+                                {department.DEPARTEMENT}
+                            </option>
+                            ))}
+                    </select>
+                </label>
+                <button
+                    type="submit"
+                    onClick={handleAddUser}
+                    className={'row-start-4 col-span-3 mt-2 mb-2 text-center w-full py-1 text-primary border-primary border-2 rounded capitalize hover:text-white hover:bg-primary transition-all duration-500 font-medium tracking-wide'}
+                    >
+                    Ajouter l'utilisateur
+                </button>
+            </div>
+        </form>}
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
 
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
@@ -108,9 +345,6 @@ const UserCrud = () => {
                         </th>
                         <th scope="col" className="px-6 py-3">
                             Département
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            Région
                         </th>
                         <th scope="col" className="px-6 py-3">
                             Délégué par
@@ -141,9 +375,6 @@ const UserCrud = () => {
                             </td>
                             <td className="px-6 py-4 text-white">
                                 {getDepartmentName(item.ID_D)}
-                            </td>
-                            <td className="px-6 py-4 text-white">
-                                {'region'}
                             </td>
                             <td className="px-6 py-4 text-white">
                                 {item.delegate_par}
@@ -184,246 +415,6 @@ const UserCrud = () => {
                     </tbody>
                 </table>
             </div>
-
-            
-            {toogleupdate && (
-                <form onSubmit={(e) => e.preventDefault()}
-                      className={' mt-5 w-6/12 w-60vw m-auto bg-secend px-4 py-2 rounded-xl hover:shadow transition-all duration-300'}>
-                    <p className={'mb-2 font-bold tracking-widest '} style={{fontSize: '13px'}}>
-                        Modifier l'utilisateur
-                    </p>
-                    <div className={'mt-4 grid grid-cols-3 gap-3'}>
-
-                        <label className={'col-start-2'}>
-                            Email :
-                            <input
-                                type="text"
-                                value={editingUser.email}
-                                onChange={(e: ChangeEvent<HTMLInputElement>) => setEditingUser({
-                                    ...editingUser,
-                                    email: e.target.value
-                                })}
-                                className={'w-full h-10 rounded mt-2 outline-0 pl-3 caret-primary border border-transparent hover:border-primary transition-all duration-500'}
-                            />
-                        </label>
-                        <label className={'col-start-3 row-start-1'}>
-                            Mot de passe :
-                            <input
-                                type="text"
-                                value={editingUser.password}
-                                onChange={(e: ChangeEvent<HTMLInputElement>) => setEditingUser({
-                                    ...editingUser,
-                                    password: e.target.value
-                                })}
-                                className={'w-full h-10 rounded mt-2 outline-0 pl-3 caret-primary border border-transparent hover:border-primary transition-all duration-500'}
-                            />
-                        </label>
-                        <label>
-                            Délégué par :
-                            <input
-                                type="text"
-                                value={editingUser.delegate_par}
-                                onChange={(e: ChangeEvent<HTMLInputElement>) => setEditingUser({
-                                    ...editingUser,
-                                    delegate_par: e.target.value
-                                })}
-                                className={'w-full h-10 rounded mt-2 outline-0 pl-3 caret-primary border border-transparent hover:border-primary transition-all duration-500'}
-                            />
-                        </label>
-                        <label className={'col-start-1 row-start-1'}>
-                            Nom et Prénom :
-                            <input
-                                type="text"
-                                value={editingUser.nom_prenom}
-                                onChange={(e: ChangeEvent<HTMLInputElement>) => setEditingUser({
-                                    ...editingUser,
-                                    nom_prenom: e.target.value
-                                })}
-                                className={'w-full h-10 rounded mt-2 outline-0 pl-3 caret-primary border border-transparent hover:border-primary transition-all duration-500'}
-                            />
-                        </label>
-                        <label className={'flex items-center gap-3'}>
-                            Admin
-                            <input
-                                type="checkbox"
-                                checked={editingUser.isAdmin}
-                                onChange={(e: ChangeEvent<HTMLInputElement>) => setEditingUser({
-                                    ...editingUser,
-                                    isAdmin: e.target.checked
-                                })}
-                                className={' outline-0 caret-primary hover:border-primary transition-all duration-500'}
-                            />
-                        </label>
-                        <label className={'flex items-center gap-3'}>
-                            User
-                            <input
-                                type="checkbox"
-                                checked={editingUser.active_statue}
-                                onChange={(e: ChangeEvent<HTMLInputElement>) => setEditingUser({
-                                    ...editingUser,
-                                    active_statue: e.target.checked
-                                })}
-                                className={' outline-0 caret-primary hover:border-primary transition-all duration-500'}
-                            />
-                        </label>
-                        <label className={'row-start-2 col-start-1'}>
-                            Téléphone :
-                            <input
-                                type="text"
-                                value={editingUser.tele}
-                                onChange={(e: ChangeEvent<HTMLInputElement>) => setEditingUser({
-                                    ...editingUser,
-                                    tele: e.target.value
-                                })}
-                                className={' w-full h-10 rounded mt-2 outline-0 pl-3 caret-primary border border-transparent hover:border-primary transition-all duration-500'}
-                            />
-                        </label>
-                        <label className={'row-start-2 col-start-2'}>
-                            ID_D :
-                            <select
-                                value={editingUser.ID_D}
-                                onChange={(e: ChangeEvent<HTMLSelectElement>) => setEditingUser({
-                                    ...editingUser,
-                                    ID_D: e.target.value
-                                })}
-                                className={'w-full h-10 rounded mt-2 outline-0 pl-3 caret-primary border border-transparent hover:border-primary transition-all duration-500'}
-                            >
-                                <option value="" disabled>Select a department</option>
-                                {departments.map(department => (
-                                    <option key={department.ID_D} value={department.ID_D}>
-                                        {department.DEPARTEMENT}
-                                    </option>
-                                ))}
-                            </select>
-                        </label>
-                        <button
-                            type="submit"
-                            onClick={handleUpdateUser}
-                            className={'row-start-4 col-span-3 mt-2 mb-2 text-center w-full py-1 text-primary border-primary border-2 rounded capitalize hover:text-white hover:bg-primary transition-all duration-500 font-medium tracking-wide'}
-                        >
-                            Mettre à jour l'utilisateur
-                        </button>
-                    </div>
-                </form>
-            )}
-            {toogle && <form onSubmit={(e) => e.preventDefault()}
-                             className={'mt-5 w-6/12 w-60vw m-auto bg-secend px-4 py-2 rounded-xl hover:shadow transition-all duration-300'}>
-                <p className={'mb-2 font-bold tracking-widest '} style={{fontSize: '13px'}}>
-                    Ajouter un utilisateur
-                </p>
-                <div className={'mt-4 grid grid-cols-3 gap-3'}>
-                    <label className={'col-start-2'}>
-                        Email :
-                        <input
-                            type="text"
-                            value={newUser.email}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => setNewUser({
-                                ...newUser,
-                                email: e.target.value
-                            })}
-                            className={'w-full h-10 rounded mt-2 outline-0 pl-3 caret-primary border border-transparent hover:border-primary transition-all duration-500'}
-                        />
-                    </label>
-                    <label className={'col-start-3 row-start-1'}>
-                        Mot de passe :
-                        <input
-                            type="text"
-                            value={newUser.password}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => setNewUser({
-                                ...newUser,
-                                password: e.target.value
-                            })}
-                            className={'w-full h-10 rounded mt-2 outline-0 pl-3 caret-primary border border-transparent hover:border-primary transition-all duration-500'}
-                        />
-                    </label>
-                    <label>
-                        Délégué par :
-                        <input
-                            type="text"
-                            value={newUser.delegate_par}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => setNewUser({
-                                ...newUser,
-                                delegate_par: e.target.value
-                            })}
-                            className={'w-full h-10 rounded mt-2 outline-0 pl-3 caret-primary border border-transparent hover:border-primary transition-all duration-500'}
-                        />
-                    </label>
-                    <label className={'col-start-1 row-start-1'}>
-                        Nom et Prénom :
-                        <input
-                            type="text"
-                            value={newUser.nom_prenom}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => setNewUser({
-                                ...newUser,
-                                nom_prenom: e.target.value
-                            })}
-                            className={'w-full h-10 rounded mt-2 outline-0 pl-3 caret-primary border border-transparent hover:border-primary transition-all duration-500'}
-                        />
-                    </label>
-                    <label className={'flex items-center gap-3'}>
-                        Admin
-                        <input
-                            type="checkbox"
-                            checked={newUser.isAdmin}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => setNewUser({
-                                ...newUser,
-                                isAdmin: e.target.checked
-                            })}
-                            className={' outline-0 caret-primary hover:border-primary transition-all duration-500'}
-                        />
-                    </label>
-                    <label className={'flex items-center gap-3'}>
-                        User
-                        <input
-                            type="checkbox"
-                            checked={newUser.active_statue}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => setNewUser({
-                                ...newUser,
-                                active_statue: e.target.checked
-                            })}
-                            className={' outline-0 caret-primary hover:border-primary transition-all duration-500'}
-                        />
-                    </label>
-                    <label className={'row-start-2 col-start-1'}>
-                        Téléphone :
-                        <input
-                            type="text"
-                            value={newUser.tele}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => setNewUser({
-                                ...newUser,
-                                tele: e.target.value
-                            })}
-                            className={' w-full h-10 rounded mt-2 outline-0 pl-3 caret-primary border border-transparent hover:border-primary transition-all duration-500'}
-                        />
-                    </label>
-                    < label className={'row-start-2 col-start-2'}>
-                        ID_D :
-                        <select
-                            value={newUser.ID_D}
-                            onChange={(e: ChangeEvent<HTMLSelectElement>) => setNewUser({
-                                ...newUser,
-                                ID_D: e.target.value
-                            })}
-                            className={'w-full h-10 rounded mt-2 outline-0 pl-3 caret-primary border border-transparent hover:border-primary transition-all duration-500'}
-                        >
-                            <option value="" hidden>Select a department</option>
-                            {departments.map(department => (
-                                <option key={department.ID_D} value={department.ID_D}>
-                                    {department.DEPARTEMENT}
-                                </option>
-                            ))}
-                        </select>
-                    </label>
-                    <button
-                        type="submit"
-                        onClick={handleAddUser}
-                        className={'row-start-4 col-span-3 mt-2 mb-2 text-center w-full py-1 text-primary border-primary border-2 rounded capitalize hover:text-white hover:bg-primary transition-all duration-500 font-medium tracking-wide'}
-                    >
-                        Ajouter l'utilisateur
-                    </button>
-                </div>
-            </form>}
-
         </>
     );
 };
