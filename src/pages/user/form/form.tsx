@@ -1,5 +1,4 @@
 import React, {ChangeEvent, createContext, FormEvent, useContext, useEffect, useRef, useState} from "react";
-import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {userContext} from "../../../App.tsx";
 import dayjs from 'dayjs';
@@ -10,10 +9,9 @@ import Monthempty from "../../../components/alerts/monthempty.tsx";
 
 export const ExistAlert = createContext()
 
-const Form = (props: PropsData) => {
+const Form = (props) => {
     const contextvalue = useContext(userContext);
-    const {user, setmerciacces} = contextvalue;
-    const navigate = useNavigate();
+    const {user} = contextvalue;
     const {Data, setData} = props;
 
     const [userDepartment, setUserDepartment] = useState<string>("");
