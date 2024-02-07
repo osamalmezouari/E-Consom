@@ -201,14 +201,13 @@ app.get('/getRegionForDepartement/:id', (req, res) => {
             res.status(500).json({error: 'Internal Server Error'});
         } else {
             if (results.length > 0) {
-                res.json(results[0]); 
+                res.json(results[0]);
             } else {
                 res.status(404).json({error: 'Region not found for the department'});
             }
         }
     });
 });
-
 
 
 app.post('/addOrUpdateOperateur', async (req, res) => {
@@ -425,7 +424,7 @@ app.get('/DonneConsomData', async (req, res) => {
         const [results] = await db.promise().query('SELECT * FROM donneconsom');
 
         if (results.length === 0) {
-            res.json([]); 
+            res.json([]);
             return;
         }
 
@@ -449,11 +448,10 @@ app.get('/DonneConsomData', async (req, res) => {
 });
 
 
-
 app.get('/getUserInfo/:userID', async (req, res) => {
     const userID = req.params.userID;
     try {
-        const userInfoQuery =` SELECT users.*, departement.DEPARTEMENT, region.REGION
+        const userInfoQuery = ` SELECT users.*, departement.DEPARTEMENT, region.REGION
             FROM users
             LEFT JOIN departement ON users.ID_D = departement.ID_D
             LEFT JOIN region ON departement.ID_R = region.ID_R
@@ -952,8 +950,6 @@ app.get('/data', (req, res) => {
         }
     });
 });
-
-
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
