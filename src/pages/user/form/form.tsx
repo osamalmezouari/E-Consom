@@ -4,7 +4,7 @@ import {userContext} from "../../../App.tsx";
 import dayjs from 'dayjs';
 import Navbar from "../../../components/navbar.tsx";
 import Alreadyexist from "../../../components/alerts/exist.tsx";
-import Datasend from "../../../components/alerts/send.tsx";
+import Datasend from "../../../components/alerts/sent.tsx";
 import Monthempty from "../../../components/alerts/monthempty.tsx";
 
 export const ExistAlert = createContext()
