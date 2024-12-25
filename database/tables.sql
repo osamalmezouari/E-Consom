@@ -123,3 +123,6 @@ create table consommation
     constraint consommation_users_user_id_fk
         foreign key (USER_ID) references users (user_id)
 );
+
+
+
